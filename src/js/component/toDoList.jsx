@@ -9,6 +9,7 @@ const ToDoList = () => {
   function addTask(e) {
     if (newTask == "") {
       alert("Please input a task");
+      e.preventDefault();
     } else {
       e.preventDefault();
       setTasks([...tasks, newTask]);
