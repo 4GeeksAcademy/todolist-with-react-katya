@@ -4,11 +4,13 @@ import React, { useState } from "react";
 const ToDoList = () => {
   const [newTask, setNewTask] = useState("");
   const [tasks, setTasks] = useState([]);
+  const [tasksCount, setTasksCount] = useState(0);
 
   function addTask(e) {
-    e.preventDefault(); 
+    e.preventDefault();
     setTasks([...tasks, newTask]);
     setNewTask("");
+    setTasksCount(tasksCount + 1);
   }
 
   return (
@@ -29,12 +31,28 @@ const ToDoList = () => {
           </div>
           <button type="submit" onClick={addTask} className="d-none"></button>
         </form>
-        {tasks.map((task, index) => (
-          <li className="list-group-item px-5 d-flex justify-content-between" key={index}>{task} <button className="btn"><i id="trash" className="fas fa-trash-alt text-white"></i></button></li>
-        ))}
+        {tasks.length == 0 ? (
+          <li className="list-group-item px-4 text-success">Just chill <i className="far fa-grin-stars"></i></li>
+        ) : (
+          tasks.map((task, index) => (
+            <li
+              className="list-group-item px-5 d-flex justify-content-between"
+              key={index}
+            >
+              {task}{" "}
+              <button className="btn">
+                <i id="trash" className="fas fa-trash-alt text-white"></i>
+              </button>
+            </li>
+          ))
+        )}
 
         <li className="list-group-item list-group-item-light px-4">
-          # items left
+          {tasksCount == 0
+            ? "No pending tasks"
+            : tasksCount == 1
+            ? "1 pending task"
+            : `${tasksCount} pending tasks`}
         </li>
       </ul>
     </div>
