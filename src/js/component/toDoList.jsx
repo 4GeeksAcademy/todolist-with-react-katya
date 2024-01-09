@@ -7,10 +7,18 @@ const ToDoList = () => {
   const [tasksCount, setTasksCount] = useState(0);
 
   function addTask(e) {
-    e.preventDefault();
-    setTasks([...tasks, newTask]);
-    setNewTask("");
-    setTasksCount(tasksCount + 1);
+    if (newTask == "") {
+      alert("Please input a task");
+    } else {
+      e.preventDefault();
+      setTasks([...tasks, newTask]);
+      setNewTask("");
+      setTasksCount(tasksCount + 1);
+    }
+  }
+
+  function removeTask() {
+    setTasksCount(tasksCount - 1);
   }
 
   return (
@@ -32,22 +40,24 @@ const ToDoList = () => {
           <button type="submit" onClick={addTask} className="d-none"></button>
         </form>
         {tasks.length == 0 ? (
-          <li className="list-group-item px-4 text-success">Just chill <i className="far fa-grin-stars"></i></li>
+          <li className="list-group-item px-4 text-success">
+            Just chill <i className="far fa-grin-stars"></i>
+          </li>
         ) : (
           tasks.map((task, index) => (
             <li
-              className="list-group-item px-5 d-flex justify-content-between"
+              className="list-group-item ps-5 d-flex justify-content-between"
               key={index}
             >
               {task}{" "}
-              <button className="btn">
+              <button className="btn" onClick={removeTask}>
                 <i id="trash" className="fas fa-trash-alt text-white"></i>
               </button>
             </li>
           ))
         )}
 
-        <li className="list-group-item list-group-item-light px-4">
+        <li className="list-group-item list-group-item-light ps-3" style={{fontSize: "12px"}}>
           {tasksCount == 0
             ? "No pending tasks"
             : tasksCount == 1
