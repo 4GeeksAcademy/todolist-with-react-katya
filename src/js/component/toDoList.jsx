@@ -4,7 +4,6 @@ import React, { useState } from "react";
 const ToDoList = () => {
   const [newTask, setNewTask] = useState("");
   const [tasks, setTasks] = useState([]);
-  const [tasksCount, setTasksCount] = useState(0);
 
   function addTask(e) {
     if (newTask == "") {
@@ -14,13 +13,8 @@ const ToDoList = () => {
       e.preventDefault();
       setTasks([...tasks, newTask]);
       setNewTask("");
-      setTasksCount(tasksCount + 1);
     }
-  }
-
-  function removeTask() {
-    setTasksCount(tasksCount - 1);
-  }
+  };
 
   return (
     <div className="d-flex justify-content-center mt-3">
@@ -51,7 +45,7 @@ const ToDoList = () => {
               key={index}
             >
               {task}{" "}
-              <button className="btn" onClick={removeTask}>
+              <button className="btn" onClick={() => setTasks(tasks.filter((item, currentIndex) => index != currentIndex))}>
                 <i id="trash" className="fas fa-trash-alt text-white"></i>
               </button>
             </li>
@@ -59,11 +53,11 @@ const ToDoList = () => {
         )}
 
         <li className="list-group-item list-group-item-light ps-3" style={{fontSize: "12px"}}>
-          {tasksCount == 0
+          {tasks.length == 0
             ? "No pending tasks"
-            : tasksCount == 1
+            : tasks.length == 1
             ? "1 pending task"
-            : `${tasksCount} pending tasks`}
+            : `${tasks.length} pending tasks`}
         </li>
       </ul>
     </div>
