@@ -18,7 +18,7 @@ const ToDoList = () => {
 
   return (
     <div className="d-flex justify-content-center mt-3">
-      <ul className="list-group shadow-lg col-4 p-0">
+      <ul className="list-group col-4 p-0 paper rounded-0">
         <h1 className="display-5 text-center list-group-item list-group-item-info m-0 text-primary-emphasis">
           My Tasks
         </h1>
