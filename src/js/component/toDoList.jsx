@@ -6,7 +6,7 @@ const ToDoList = () => {
   const [tasks, setTasks] = useState([]);
 
   function addTask(e) {
-    if (newTask == "") {
+    if (newTask == "" || newTask.trim() == "") {
       alert("Please input a task");
       e.preventDefault();
     } else {
@@ -41,7 +41,7 @@ const ToDoList = () => {
         ) : (
           tasks.map((task, index) => (
             <li
-              className="list-group-item ps-5 d-flex justify-content-between"
+              className="list-group-item ps-5 d-flex justify-content-between align-items-center"
               key={index}
             >
               {task}{" "}
