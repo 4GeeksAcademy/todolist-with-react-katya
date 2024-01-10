@@ -29,14 +29,14 @@ const ToDoList = () => {
               type="text"
               onChange={(e) => setNewTask(e.target.value)}
               value={newTask}
-              className="form-control list-group-item px-5"
+              className={`form-control list-group-item ${tasks.length > 0 ? "ps-5" : ""}`}
             />
           </div>
           <button type="submit" onClick={addTask} className="d-none"></button>
         </form>
         {tasks.length == 0 ? (
-          <li className="list-group-item px-4 text-success">
-            Just chill <i className="far fa-grin-stars"></i>
+          <li className="list-group-item text-success">
+            Nothing to do! You can chill <i className="far fa-grin-stars"></i>
           </li>
         ) : (
           tasks.map((task, index) => (
