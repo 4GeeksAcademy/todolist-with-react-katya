@@ -14,7 +14,7 @@ const ToDoList = () => {
       setTasks([...tasks, newTask]);
       setNewTask("");
     }
-  };
+  }
 
   return (
     <div className="d-flex justify-content-center mt-3">
@@ -28,11 +28,15 @@ const ToDoList = () => {
             <input
               type="text"
               onChange={(e) => setNewTask(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") addTask(e);
+              }}
               value={newTask}
-              className={`form-control list-group-item ${tasks.length > 0 ? "ps-5" : ""}`}
+              className={`form-control list-group-item ${
+                tasks.length > 0 ? "ps-5" : ""
+              }`}
             />
           </div>
-          <button type="submit" onClick={addTask} className="d-none"></button>
         </form>
         {tasks.length == 0 ? (
           <li className="list-group-item text-success">
@@ -45,14 +49,24 @@ const ToDoList = () => {
               key={index}
             >
               {task}{" "}
-              <button className="btn" onClick={() => setTasks(tasks.filter((item, currentIndex) => index != currentIndex))}>
+              <button
+                className="btn"
+                onClick={() =>
+                  setTasks(
+                    tasks.filter((item, currentIndex) => index != currentIndex)
+                  )
+                }
+              >
                 <i id="trash" className="fas fa-trash-alt text-white"></i>
               </button>
             </li>
           ))
         )}
 
-        <li className="list-group-item text-body-tertiary ps-3" style={{fontSize: "12px"}}>
+        <li
+          className="list-group-item text-body-tertiary ps-3"
+          style={{ fontSize: "12px" }}
+        >
           {tasks.length == 0
             ? "No pending tasks"
             : tasks.length == 1
