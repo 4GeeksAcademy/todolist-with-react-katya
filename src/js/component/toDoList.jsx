@@ -19,7 +19,7 @@ const ToDoList = () => {
   return (
     <div className="d-flex justify-content-center mt-3">
       <ul className="list-group shadow-lg col-4 p-0">
-        <h1 className="display-5 text-center list-group-item list-group-item-info m-0">
+        <h1 className="display-5 text-center list-group-item list-group-item-info m-0 text-primary-emphasis">
           My Tasks
         </h1>
 
@@ -52,7 +52,7 @@ const ToDoList = () => {
           ))
         )}
 
-        <li className="list-group-item list-group-item-light ps-3" style={{fontSize: "12px"}}>
+        <li className="list-group-item text-body-tertiary ps-3" style={{fontSize: "12px"}}>
           {tasks.length == 0
             ? "No pending tasks"
             : tasks.length == 1
