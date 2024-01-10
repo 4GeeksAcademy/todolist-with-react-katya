@@ -11,7 +11,7 @@ const ToDoList = () => {
       e.preventDefault();
     } else {
       e.preventDefault();
-      setTasks([...tasks, newTask]);
+      setTasks((prev) => prev.concat([newTask]));
       setNewTask("");
     }
   }
@@ -23,14 +23,12 @@ const ToDoList = () => {
           My Tasks
         </h1>
 
-        <form>
+        <form onSubmit={addTask}>
           <div>
             <input
               type="text"
               onChange={(e) => setNewTask(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") addTask(e);
-              }}
+              
               value={newTask}
               className={`form-control list-group-item ${
                 tasks.length > 0 ? "ps-5" : ""
